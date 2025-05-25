@@ -17,6 +17,8 @@ If you are developing a production application, we recommend using TypeScript wi
 ## Project Details 
 
 1. setup the project with tailwind 
+2.Header
+3.Build are Login form
 
 
 ## Features in the projects 
