@@ -2,13 +2,18 @@ import React, { useState, useRef } from "react";
 import Header from "./Header";
 import { checkValidateData } from "../utils/validate";
 
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/fireBase.jsx";
+
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
-   const [errorMessage, setErrorMessage ] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const email = useRef(null);
   const password = useRef(null);
- 
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -19,12 +24,55 @@ const Login = () => {
     // console.log(email.current.value);
     // console.log(password.current.value);
 
-    const message = checkValidateData(email.current.value, password.current.value)
+    const message = checkValidateData(
+      email.current.value,
+      password.current.value
+    );
     // console.log(message);
     setErrorMessage(message);
 
+    if (message) return;
 
     //Sign In /Sign Up
+
+    if (!isSignInForm) {
+      //sign up logic.
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+          // ..
+        });
+    } else {
+      //signIn logic;
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+        });
+    }
   };
 
   return (
@@ -36,6 +84,7 @@ const Login = () => {
           src="https://assets.nflxext.com/ffe/siteui/vlv3/914ad279-199e-4095-9c10-2409dc9e5e1b/web/IN-en-20250519-TRIFECTA-perspective_8f1ca896-9e49-4a4e-90f0-22fc49650bd9_large.jpg"
         />
       </div>
+
       <form
         onSubmit={(e) => e.preventDefault()}
         className=" w-3/12 absolute p-12 bg-black opacity-80 text-white my-36 mx-auto right-0 left-0 rounded-lg "
@@ -59,14 +108,14 @@ const Login = () => {
           placeholder="EmailAddress"
           className="p-4 my-3 w-full  bg-gray-700 rounded-lg"
         />
-         
+
         <input
           ref={password}
           type="password"
           placeholder="Password"
           className="p-4 my-3  w-full bg-gray-700 rounded-lg"
         />
-        <p className="text-red-700 font-bold text-lg p-1" > {errorMessage}</p>
+        <p className="text-red-700 font-bold text-lg p-1"> {errorMessage}</p>
         <button
           className="p-4 my-3  bg-red-700  w-full rounded-lg"
           onClick={handleButtonClick}

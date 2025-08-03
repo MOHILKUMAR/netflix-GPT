@@ -23,6 +23,11 @@ If you are developing a production application, we recommend using TypeScript wi
 -Build a login form
 -Form validation
 -useRef Hooks
+-Firebase setup
+-Depolying our app to production
+create SignUp User account
+-Implement signIN and signup form Api; 
+-Created ReduxStore with userSlice;
 
 
 ## Features in the projects 
@@ -40,7 +45,7 @@ If you are developing a production application, we recommend using TypeScript wi
 -NetflexGPT
     SEARCH Bar 
     Movies Suggestions
-
+    
 
 
 
