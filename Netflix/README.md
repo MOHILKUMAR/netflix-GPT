@@ -28,6 +28,11 @@ If you are developing a production application, we recommend using TypeScript wi
 create SignUp User account
 -Implement signIN and signup form Api; 
 -Created ReduxStore with userSlice;
+-Implement Sign out
+-Update Profile
+-Bugfix: SignUp user DisplayName and Profile picture.
+-BugFix: If the user is not logged in Redireacted to browse to login Page and vice-verse
+-Add URL in the Constant File.
 
 
 ## Features in the projects 
