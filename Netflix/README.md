@@ -43,6 +43,12 @@ Planning for mainContainer & secondary container
 -update Store With trailer videoData
 -Embedded the video and make it autoplay and mute
 -Use tailwindCSS to UI of Main Container. 
+-Build Secondary Component
+-Build Movies List
+-Build Movies Card 
+-TMBD Image CDN URL 
+-Made the Browse page amazing with tailwind 
+-usePopularMovies Custom Hooks
 
 ## Features in the projects 
 
