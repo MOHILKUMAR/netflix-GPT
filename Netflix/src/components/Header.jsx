@@ -1,4 +1,4 @@
-import React from "react";
+
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/fireBase";
 import { useNavigate } from "react-router";
@@ -57,7 +57,7 @@ const Header = () => {
 
 
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
+    <div className="absolute w-screen px-16 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
       <img
         className="w-44"
         alt="logo"

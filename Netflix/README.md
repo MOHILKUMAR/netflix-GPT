@@ -33,7 +33,16 @@ create SignUp User account
 -Bugfix: SignUp user DisplayName and Profile picture.
 -BugFix: If the user is not logged in Redireacted to browse to login Page and vice-verse
 -Add URL in the Constant File.
-
+-Register TMDB API & create an app & Get access token.
+-Get data from TMDB to browse Pages.
+-Custom Hooks for Now playing movies list ApI
+-Create MoviesSlice
+-Update Store with moives Data
+Planning for mainContainer & secondary container
+-Fetching data for trailer Video Data
+-update Store With trailer videoData
+-Embedded the video and make it autoplay and mute
+-Use tailwindCSS to UI of Main Container. 
 
 ## Features in the projects 
 
