@@ -1,4 +1,3 @@
-
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/fireBase";
 import { useNavigate } from "react-router";
@@ -7,12 +6,17 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice.jsx";
-import { LOGO } from "../utils/constant.jsx";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constant.jsx";
+import { toggleGptSearchView } from "../utils/gptSlice.jsx";
+import lang from "../utils/languageConstant.jsx";
+import { changeLanguage } from "../utils/configSlice.jsx";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
+
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -24,8 +28,12 @@ const Header = () => {
       });
   };
 
-    useEffect(() => {
-   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  const handleGptSearchClick = () => {
+    //toggle GPT Search
+    dispatch(toggleGptSearchView());
+  };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
@@ -40,7 +48,7 @@ const Header = () => {
             photoURL: photoURL,
           })
         );
-         navigate("/browse");
+        navigate("/browse");
         // ...
       } else {
         // User is signed out
@@ -50,33 +58,57 @@ const Header = () => {
         navigate("/");
       }
     });
-    
-    // Unsubscribe is help to unmount the components 
+
+    // Unsubscribe is help to unmount the components
     return () => unsubscribe();
   }, []);
 
+  const handleLanguageChange = (e) => {
+    //  console.log(e.target.value)
 
+    dispatch(changeLanguage(e.target.value));
+  };
   return (
     <div className="absolute w-screen px-16 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img
-        className="w-44"
-        alt="logo"
-        src={LOGO}
-      />
-      {user &&
-       (<div className="flex p-2">
-        <img
-          className="w-12  h-12  rounded-lg  "
-          src={user?.photoURL}
-          alt="user-icon"
-        />
-        <p className="font-bold text-white m-2">{user?.displayName}</p>
-        <button onClick={handleSignOut} className="font-bold text-white">
-          SignOut
-        </button>
-      </div>)
+      <img className="w-44" alt="logo" src={LOGO} />
+      {user && (
+        <div className="flex p-2">
+          {showGptSearch && (
+            <select
+              name=""
+              id=""
+              className="bg-gray-700 text-whites"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
 
-      }
+          <button
+            className="px-2 font-medium bg-purple-500 rounded-lg mx-4 cursor-pointer"
+            onClick={handleGptSearchClick}
+          >
+            {showGptSearch ? "HomePage" : "GPT Search"}
+          </button>
+
+          <img
+            className="w-12  h-12  rounded-4xl mt-2  "
+            src={user?.photoURL}
+            alt="user-icon"
+          />
+          <p className="font-bold text-white mt-4 m-2">{user?.displayName}</p>
+          <button
+            onClick={handleSignOut}
+            className="font-medium text-white bg-blue-600 px-2 rounded-lg cursor-pointer"
+          >
+            SignOut
+          </button>
+        </div>
+      )}
     </div>
   );
 };

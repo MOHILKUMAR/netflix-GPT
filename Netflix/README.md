@@ -49,6 +49,8 @@ Planning for mainContainer & secondary container
 -TMBD Image CDN URL 
 -Made the Browse page amazing with tailwind 
 -usePopularMovies Custom Hooks
+-gpt search features
+
 
 ## Features in the projects 
 
