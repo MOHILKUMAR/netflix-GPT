@@ -50,6 +50,14 @@ Planning for mainContainer & secondary container
 -Made the Browse page amazing with tailwind 
 -usePopularMovies Custom Hooks
 -gpt search features
+-gpt Search Bar
+-Multi-language Features in Our App
+-Get Open search API calls
+-fetched gptMoiveSuggestions from TMDB
+-Resused Moive List component to make  move suggestion 
+-Memoization 
+-Add .evn file
+-made the site reponsive
 
 
 ## Features in the projects 
