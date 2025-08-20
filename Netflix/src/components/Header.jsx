@@ -70,7 +70,7 @@ const Header = () => {
   };
   return (
     <div className="absolute w-screen px-16 py-2 bg-gradient-to-b from-black z-10 flex flex-col  md:flex-row justify-between">  {/** bg-black sm:bg-blue-900 md:bg-green-900 */}     
-     <img className="w-44 mx-auto md:mx-0" alt="logo" src={LOGO} />
+     <img className="w-20 rounded-full mx-auto md:mx-0" alt="logo" src={LOGO} />
       {user && (
         <div className="flex p-2 justify-between">
           {showGptSearch && (

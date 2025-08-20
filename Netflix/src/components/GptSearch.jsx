@@ -8,7 +8,7 @@ const GptSearch = () => {
     <>
       {" "}
       <div className="fixed -z-10 opacity-80">
-        <img className="h-screen object-cover" alt="backgroundImage" src={LOGIN_BG_URL} />
+        <img className="h-screen md:w-screen " alt="backgroundImage" src={LOGIN_BG_URL} />
       </div>
       <div className="">
         {/**1.Gpt seacrh bar
